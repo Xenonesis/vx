@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vixonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#vixonGradient)" opacity="0.1"/>
+  
+  <!-- Main V Shape -->
+  <path d="M60 50 L100 150 L140 50" 
+        stroke="url(#vixonGradient)" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        filter="url(#glow)"/>
+  
+  <!-- Inner accent lines -->
+  <path d="M75 70 L100 130 L125 70" 
+        stroke="url(#vixonGradient)" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        opacity="0.6"/>
+  
+  <!-- Decorative dots -->
+  <circle cx="60" cy="50" r="5" fill="url(#vixonGradient)"/>
+  <circle cx="140" cy="50" r="5" fill="url(#vixonGradient)"/>
+  <circle cx="100" cy="150" r="5" fill="url(#vixonGradient)"/>
+</svg>

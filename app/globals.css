@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-display: var(--font-syne);
+  --font-body: var(--font-dm-sans);
+  
+  /* Modern Consulting Palette - derived from logo vibes + high-end editorial */
+  --color-vixon-dark: #0f1115;
+  --color-vixon-darker: #08090a;
+  --color-vixon-light: #f8f9fa;
+  --color-vixon-lighter: #ffffff;
+  --color-vixon-accent: #2563eb; /* Trust blue */
+  --color-vixon-accent-hover: #1d4ed8;
+  --color-vixon-border-dark: rgba(255, 255, 255, 0.1);
+  --color-vixon-border-light: rgba(0, 0, 0, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-primary: var(--color-vixon-light);
+    --bg-secondary: var(--color-vixon-lighter);
+    --text-primary: var(--color-vixon-darker);
+    --text-secondary: #4b5563;
+    --border-color: var(--color-vixon-border-light);
+    --accent-color: var(--color-vixon-accent);
+  }
+
+  .dark {
+    --bg-primary: var(--color-vixon-dark);
+    --bg-secondary: var(--color-vixon-darker);
+    --text-primary: var(--color-vixon-lighter);
+    --text-secondary: #9ca3af;
+    --border-color: var(--color-vixon-border-dark);
+    --accent-color: #3b82f6; /* slightly lighter blue for dark mode */
+  }
+
+  html, body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  ::selection {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  
+  .dark .noise-bg {
+    opacity: 0.02;
+  }
+  
+  .bg-theme-primary {
+    background-color: var(--bg-primary);
+  }
+  
+  .bg-theme-secondary {
+    background-color: var(--bg-secondary);
+  }
+  
+  .text-theme-primary {
+    color: var(--text-primary);
+  }
+  
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .border-theme {
+    border-color: var(--border-color);
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px var(--text-secondary);
+    color: transparent;
+  }
+  
+  .text-stroke:hover {
+    color: var(--text-primary);
+    -webkit-text-stroke: 0px transparent;
+  }
 }
